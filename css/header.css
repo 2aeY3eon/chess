@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+}
+
+#header {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    justify-content: left;
+}
