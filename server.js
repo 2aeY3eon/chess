@@ -7,25 +7,6 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-const session = require('express-session');
-const RedisStore = require('connect-redis').default; // .default를 사용하여 RedisStore 클래스를 가져옴
-const { createClient } = require('redis');
-
-const redisClient = createClient({
-    host: '127.0.0.1',
-    port: 6379
-});
-
-redisClient.connect().catch(console.error);
-
-app.use(session({
-    store: new RedisStore({ client: redisClient }),
-    secret: 'super_secret_key',
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false } // HTTPS를 사용할 때 true로 설정
-}));
-
 ////////////////////
 ////// board ///////
 ////////////////////

@@ -27,6 +27,7 @@ const pieceImages = {
 };
 
 let myTurn = '';
+let gameTime = 0;
 game_status = 'off';
 let kingMoved = { white: false, black: false };
 let rookMoved = { 'white-left': false, 'white-right': false, 'black-left': false, 'black-right': false };
@@ -556,10 +557,10 @@ socket.on('timeout', function(getCurrentTurn) {
     opTurn = getCurrentTurn === 'white' ? 'black' : 'white';
     game_status = 'off';
 
-    alert('시간초과! ' + opTurn + ' 승!');
+    alert('시간초과! ' + getCurrentTurn + ' 승!');
 
-    game_win(opTurn);
-    game_lose(getCurrentTurn);
+    game_win(getCurrentTurn);
+    game_lose(opTurn);
     location.href=currentUrl.href;
 
 });
