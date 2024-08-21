@@ -30,7 +30,7 @@ app.use(session({
 ////// board ///////
 ////////////////////
 
-const initialBoard = [
+var initialBoard = [
     ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'],
     ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
     ['.', '.', '.', '.', '.', '.', '.', '.'],
@@ -105,14 +105,14 @@ io.on('connection', (socket) => { // socket.io 연결되었을 때
     if(userCnt == 2) { // 유저 2명일 때
         console.log('game start');
         users.black = username;
-        socket.emit('userVs', users);
+        io.emit('userVs', users);
         socket.emit('second-player', 'black'); // 2팀
         io.emit('gameStart');
         startMoveTimer();
     } else if(userCnt==1) {
         console.log('readying');
         users.white = username;
-        socket.emit('userVs', users);
+        io.emit('userVs', users);
         socket.emit('first-player', 'white'); // 1팀
         io.emit('ready');
         stopMoveTimer();
@@ -125,8 +125,8 @@ io.on('connection', (socket) => { // socket.io 연결되었을 때
             RealCurrentTurn = 'white';
         }
         initialBoard = getBoard;
-        socket.broadcast.emit('changeTurn', RealCurrentTurn);
-        socket.broadcast.emit('changeBoard', initialBoard);
+        io.emit('changeTurn', RealCurrentTurn);
+        io.emit('changeBoard', initialBoard);
         
         startMoveTimer();
     });

@@ -1,6 +1,6 @@
 const chessboard = document.getElementById("chessboard");
 
-const initialBoard = [
+var initialBoard = [
     ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'],
     ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
     ['.', '.', '.', '.', '.', '.', '.', '.'],
@@ -105,6 +105,7 @@ function onDrop(event) {
     }
     if(myTurn != currentTurn) {
         alert('자신의 차례가 아닙니다');
+        alert(myTurn + currentTurn);
         return
     }
     if(game_status != 'on') {
@@ -441,11 +442,6 @@ function giveUpMessage(getMyTurn) {
     location.href=currentUrl.href;
 }
 
-socket.on('move', (moveData) => {
-    // moveData를 바탕으로 체스판을 업데이트
-    updateChessBoard(moveData);
-});
-
 socket.on('gameStart', function () {
     console.log('game start');
     game_status = 'on';
@@ -479,9 +475,12 @@ socket.on('updateTimer', (remTime) => {
 socket.on('changeTurn', (getTurn) => {
     console.log('change Turn');
     currentTurn = getTurn;
+    document.getElementById('whosturn').innerHTML = getTurn + ' turn';
+    
 });
 
 socket.on('changeBoard', (getBoard) => {
+    initialBoard = getBoard;
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
             temp_square = document.querySelector(`[data-row="${i}"][data-col="${j}"]`);
@@ -511,6 +510,7 @@ socket.on('changeBoard', (getBoard) => {
 socket.on('giveUp', (getTurn) => {
     giveUpMessage(getTurn);
 });
+
 
 function drawPlz(getTurn) {
     if(game_status != 'on') {
@@ -556,10 +556,10 @@ socket.on('timeout', function(getCurrentTurn) {
     opTurn = getCurrentTurn === 'white' ? 'black' : 'white';
     game_status = 'off';
 
-    alert('시간초과! ' + getCurrentTurn + ' 승!');
+    alert('시간초과! ' + opTurn + ' 승!');
 
-    game_win(getCurrentTurn);
-    game_lose(opTurn);
+    game_win(opTurn);
+    game_lose(getCurrentTurn);
     location.href=currentUrl.href;
 
 });
@@ -587,4 +587,6 @@ function game_lose(player_turn) {
 socket.on('userVs', function(users) {
     document.getElementById('vs').innerHTML = `${users.white} vs ${users.black}`
 });
+
+
 

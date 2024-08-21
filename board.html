@@ -37,7 +37,7 @@
                     <span id="timer">30</span>
                 </div>
                 <div class="game-controls">
-                    <h3>booil turn</h3>
+                    <h3 id="whosturn">white turn</h3>
                     <button onclick="giveUp()">기권</button>
                     <button onclick="drawPlz()">무승부 신청</button>
                 </div>
@@ -46,13 +46,6 @@
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/board.js"></script>
-    <script>
-        let gameTime = 0;
-
-
-        // 1초마다 실행되는 타이머
-
-    </script>
 </body>
 
 </html>
