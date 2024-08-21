@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="public/css/header.css">
 <header id="header" style="justify-content: left;">
-    <a href="index.php"><img src="images/unifox.png" width="200"></a>
+    <a href="index.php"><img src="public/images/unifox.png" width="200"></a>
 </header>
 
 <?php

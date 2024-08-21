@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="public/css/index.css">
     <title>Sign up</title>
 </head>
 
@@ -64,6 +64,7 @@ mysqli_close($conn);
         <h1>Hello, Chess!</h1>
     </div>
     <h2>Sign up</h2>
+    <div id="main">
     <form action="signup.php" method="post">
         <table>
             <tr>
@@ -78,6 +79,7 @@ mysqli_close($conn);
         <input type="submit" name="submit" value="signup">
     </form><br>
     <a href="/login.php">Sign in</a>
+    </div>
 </body>
 
 </html>

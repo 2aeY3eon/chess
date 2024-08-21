@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="public/css/index.css">
     <title>Login Page</title>
 </head>
 
@@ -56,6 +56,7 @@
     </div>
 
     <h2>Login</h2>
+    <div id="main">
     <form action="login.php" method="post">
         <table>
             <tr>
@@ -76,6 +77,7 @@
         }
     ?>
     <a href="signup.php">Sign up</a>
+    </div>
 </body>
 
 </html>
